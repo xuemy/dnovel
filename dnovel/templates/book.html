@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}{{ novel.seo_title }}{% endblock %}
+{% block description %}{{ novel.seo_description }}{% endblock %}
+
+{% block body %}
+    <body style="background:#282b36 repeat-x scroll 0 0">
+    {% block line %}
+        {{ block.super }}
+    {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2 style="color: #D6D6D6">
+                <p class="book-category">
+                    <a href="/">首页</a>
+                    {% for category in category_list %}
+                        {% if category_alias %}
+                            {% ifequal category_alias category.alias %}
+                                <a href="{{ category.get_category_url }}" class="active">{{ category }}</a>
+                            {% else %}
+                                <a href="{{ category.get_category_url }}">{{ category }}</a>
+                            {% endifequal %}
+                        {% elif novel.category %}
+                            {% ifequal novel.category.alias category.alias %}
+                                <a href="{{ category.get_category_url }}" class="active">{{ category }}</a>
+                            {% else %}
+                                <a href="{{ category.get_category_url }}">{{ category }}</a>
+                            {% endifequal %}
+
+                        {% endif %}
+                    {% endfor %}
+                </p>
+            </h2>
+
+        </div>
+        <div class="row book-info">
+            <a href="{{ novel.get_novel_url }}" title="{{ novel }}"><img src="{{ MEDIA_URL }}{{ novel.image }}"
+                                                                         class="col-md-3" alt=""/></a>
+            <div class="col-md-6">
+                <div class="book-info-title">
+                    <h2><a href="{{ novel.get_novel_url }}" title="{{ novel.name }}"
+                           style="text-decoration: none;">{{ novel.name }}</a>
+                        <small>{{ novel.author }}</small>
+                    </h2>
+                </div>
+                <p>类型:{{ novel.category }}</p>
+
+                <p>最新章节: <a href="{{ novel.last_chapter.get_chapter_url }}">{{ novel.last_chapter }}</a></p>
+
+                <p>最近更新:{{ novel.last_chapter.update_time }} </p>
+
+                <p style="height: 120px;overflow: hidden">简介:{{ novel.last_chapter.description|safe }}</p>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+        <div class="row book-chapter">
+            <ul class="list-unstyled" style="width: 850px;margin: 0 auto;">
+                {% for c in chapter_list %}
+                    <li class="col-md-4 chapter limit-word" style="margin-bottom: 10px;">
+                        <a href="{{ c.get_chapter_url }}" title="{{ c.name }}">{{ c.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}
+    {% block footer %}
+        {{ block.super }}
+    {% endblock %}
+    </body>
+{% endblock %}

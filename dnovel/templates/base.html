@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="keywords" content="{% block keywords %}{% endblock %}"/>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="viewport" content="width=device-width">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/bootstrap-theme.min.css" %}">
+    <link rel="stylesheet" href="{% static "main.css" %}"/>
+    <script src="{% static "js/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
+</head>
+{% block body %}
+<body>
+{% block line %}
+    <div class="redBorder"></div>
+    <div class="greenBorder"></div>
+    <div class="yellowBorder"></div>
+{% endblock %}
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+    {% block other %}
+    {% endblock %}
+{% block footer %}
+    <footer>
+        <div class="container" style="color: #d6d6d6">
+            {% block youlian %}
+
+            {% endblock %}
+            <div class="banquan">
+                <p class="text-center">本站所有小说为转载作品，所有章节均由网友上传，转载至本站只是为了宣传本书让更多读者欣赏。</p>
+                <p class="text-center">Copyright © 2013 {{ site_name }} All Rights Reserved.{{ tongji|safe }}</p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
+    <script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{% static "js/jquery-1.10.1.min.js" %}"><\/script>')</script>
+{#    <script src="{% static "js/bootstrap.min.js" %}"></script>#}
+    <script>var _gaq = [['_setAccount', '{{ google }}'],['_trackPageview']];(function (d, t) {var g = d.createElement(t), s = d.getElementsByTagName(t)[0];g.src = '//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g, s)}(document, 'script'));</script>
+</body>
+{% endblock %}
+
+</html>

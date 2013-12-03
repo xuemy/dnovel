@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ book.name }}
+{% endblock %}
+{% block description %}
+    {{ book.description }}
+{% endblock %}
+
+{% block body %}
+    <body style="background:#282b36 repeat-x scroll 0 0">
+    {% block line %}
+        {{ block.super }}
+    {% endblock %}
+    {% block content %}
+        <div class="container" style="width: 1070px">
+            <div class="row" style="background-color: #f1f1f1;margin-top: 20px;padding: 5px 5px 5px 5px;">
+                <ul id="breadcrumbs-three" class="list-unstyled" style="margin-bottom: 0;">
+                    <li>
+                        <a href="/"><span class="glyphicon glyphicon-home"></span></a>
+                    </li>
+                    <li><a href="{{ book.category.get_category_url }}">{{ book.category.name }}</a></li>
+                    <li><a href="{{ book.get_novel_url }}">{{ book.name }}</a></li>
+                    <li><a href="#">{{ chapter.name }} 正文</a></li>
+                </ul>
+            </div>
+            <div class="row" style="background-color: #f1f1f1;margin-top: 1px;margin-bottom: 20px;">
+                <h2 class="text-center">{{ chapter.name }}</h2>
+
+                <p class="text-center">
+                    <a href="{{ chapter.prev_chapter }}">上一章</a>
+                    <a href="{{ book.get_novel_url }}" STYLE="margin-left: 5px;margin-right: 5px">返回目录</a>
+                    <a href="{{ chapter.next_chapter }}">下一章</a>
+                </p>
+                <hr style="border-top: 1px dotted #333333;margin-top: 5px"/>
+                {{ chapter_top_ads }}
+                <div class="chapter-content">
+                    {{ chapter.content|safe }}
+                    <p class="text-center">
+                        <a href="{{ chapter.prev_chapter }}">上一章</a>
+                        <a href="{{ book.get_novel_url }}" STYLE="margin-left: 5px;margin-right: 5px">返回目录</a>
+                        <a href="{{ chapter.next_chapter }}">下一章</a>
+                    </p>
+                </div>
+                {{ chapter_bottm_ads }}
+            </div>
+
+        </div>
+    {% endblock %}
+    {% block footer %}
+        {{ block.super }}
+    {% endblock %}
+    </body>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}{{ seo.index_seo_title }}-{{ site_name }}{% endblock %}
+{% block description %}{{ index_book.seo_description|safe }}{% endblock %}
+{% block header %}
+    <header class="text-center container">
+        <h1>
+            <span class="glyphicon glyphicon-book"></span> {{ site_name }}
+        </h1>
+
+        <h3 class="site-name">
+            {{ site_subname }}
+        </h3>
+    </header>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="category">
+            <h3 class="category-hot">热门推荐</h3>
+            <ul class="list-unstyled">
+                {% for category in category_list %}
+                    <li>
+                        <strong style="float: left;"><a href="{{ category.get_category_url }}"
+                                                        style="color: #333333;text-decoration: none">{{ category }}:</a></strong>
+                        {% for novel in category.novel_set.all %}
+                            <span class="col-md-2 text-center">
+                                    <a href="{{ novel.get_novel_url }}">{{ novel }}</a>
+                                </span>
+                        {% endfor %}
+                        <strong>
+                            <a href="{{ category.get_category_url }}"
+                               style="color: #333333;text-decoration: none">更多>></a>
+                        </strong>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="social">
+
+        </div>
+        <div class="index-page">
+            <h2 class="category-hot text-center">
+                {{ index_book.name }}
+                <small>({{ index_book.author }})</small>
+            </h2>
+            <div class="chapterlist row">
+                {% for c in chapter %}
+                    <div class="col-md-4 chapter col-sm-4 limit-word">
+                        <a href="{{ c.get_chapter_url }}" title="{{ c.name }}">{{ c.name }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block youlian %}
+    <h4>友情链接:</h4>
+    <p class="youlian">
+    {% for link in link_list %}
+        <a href="{{ link.url|safe }}">{{ link.name }}</a>
+    {% endfor %}
+    </p>
+{% endblock %}
