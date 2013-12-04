@@ -11,3 +11,6 @@ ehthumbs.db
 Thumbs.db
 .idea/*
 novel/migrations/*
+tmp/*
+scripts/lost.*
+scripts/test.*

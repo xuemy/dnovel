@@ -6,3 +6,4 @@ gevent
 south
 django-tinymce
 supervisor
+pil

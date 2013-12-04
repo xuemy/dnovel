@@ -1,0 +1,10 @@
+[
+	{"pk":'1',"model":"novel.Category","fields":{"name":"玄幻小说","alias":'xuanhuan'}},
+	{"pk":'2',"model":"novel.Category","fields":{"name":"仙侠修真","alias":'xianxia'}},
+	{"pk":'3',"model":"novel.Category","fields":{"name":"都市小说","alias":'dushi'}},
+	{"pk":'4',"model":"novel.Category","fields":{"name":"历史小说","alias":'lishi'}},
+	{"pk":'5',"model":"novel.Category","fields":{"name":"网游小说","alias":'wangyou'}},
+	{"pk":'6',"model":"novel.Category","fields":{"name":"言情小说","alias":'yanqing'}},
+	{"pk":'7',"model":"novel.Category","fields":{"name":"科幻小说","alias":'kehuan'}},
+	{"pk":'8',"model":"novel.Category","fields":{"name":"竞技小说","alias":'jinji'}},
+]
