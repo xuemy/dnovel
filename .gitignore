@@ -14,3 +14,4 @@ novel/migrations/*
 tmp/*
 scripts/lost.*
 scripts/test.*
+scripts/build/*
