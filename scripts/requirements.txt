@@ -1,0 +1,8 @@
+Django==1.5.5
+lxml
+pymysql
+scrapy
+gevent
+south
+django-tinymce
+supervisor

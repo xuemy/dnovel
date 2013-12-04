@@ -21,18 +21,21 @@ SOCKFILE=$DIR/tmp/gunicorn.sock  # we will communicte using this unix socket
 source /usr/local/bin/virtualenvwrapper.sh
 workon lost
 
-USER=`whoami`                                        # the user to run as
+USER=`whoami`                                      # the user to run as
 GROUP=`whoami`                                     # the group to run as
 
-NUM_WORKERS=4                                     # how many worker processes should Gunicorn spawn
-DJANGO_SETTINGS_MODULE=dnovel.settings             # which settings file should Django use
-DJANGO_WSGI_MODULE=dnovel.wsgi                     # WSGI module name
+NUM_WORKERS=4   
+                                 
+DJANGO_SETTINGS_MODULE=dnovel.settings
+
+DJANGO_WSGI_MODULE=dnovel.wsgi
 
 echo "Starting $NAME as `whoami`"
 
 # Activate the virtual environment
 cd $DJANGODIR
-#source ../bin/activate
+
+
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 
 # Create the run directory if it doesn't exist

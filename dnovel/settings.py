@@ -119,21 +119,12 @@ MIDDLEWARE_CLASSES = (
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
-#DEBUG_TOOLBAR_PANELS = [
-#    #'debug_toolbar.panels.versions.VersionsPanel',
-#    #'debug_toolbar.panels.timer.TimerPanel',
-#    #'debug_toolbar.panels.settings.SettingsPanel',
-#    #'debug_toolbar.panels.headers.HeadersPanel',
-#    #'debug_toolbar.panels.request.RequestPanel',
-#    'debug_toolbar.panels.sql.SQLPanel',
-#    'debug_toolbar.panels.template.TemplatesPanel',
-#    #'debug_toolbar.panels.cache.CachePanel',
-#    'debug_toolbar.panels.signals.SignalsPanel',
-#    'debug_toolbar.panels.logging.LoggingPanel',
-#    #'debug_toolbar.panels.redirects.RedirectsPanel',
-#]
+
+
 ROOT_URLCONF = 'dnovel.urls'
+
 INTERNAL_IPS = "127.0.0.1"
+
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'dnovel.wsgi.application'
 
@@ -151,12 +142,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    #'djcelery',
-    'gunicorn',
     'tinymce',
-    #'kombu.transport.django',
-    'django.contrib.admin',
 
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     "novel",
