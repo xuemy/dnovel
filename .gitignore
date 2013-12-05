@@ -1,5 +1,4 @@
 *.pyc
-*.db
 *.log
 log/*
 .DS_Store
