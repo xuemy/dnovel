@@ -5,5 +5,8 @@ scrapy
 gevent
 south
 django-tinymce
-supervisor
 pil
+gunicorn
+django-debug-toolbar
+unicodedata
+markupsafe
