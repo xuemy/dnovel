@@ -11,7 +11,8 @@ from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.contrib.loader import XPathItemLoader
 from scrapy.contrib.loader.processor import  Join, TakeFirst
 from scrapy.http import Request
-from scrapy.selector import HtmlXPathSelector
+from scrapy.item import Item,Field
+from scrapy.selector import Selector
 from scrapy.spider import BaseSpider
 from novel.models import Collection, Novel, Category
 from spider.items import ArticleItem
@@ -54,6 +55,8 @@ def slugify(value, substitutions=()):
     # but Pelican should generally use only unicode
     return value.decode('ascii')
 
+
+
 class Lost(BaseSpider):
     name = 'lost'
     def __init__(self,**kwargs):
@@ -81,11 +84,11 @@ class Lost(BaseSpider):
         if not self.book:
             log.msg("小说不在数据库中，下面创建小说")
             log.msg("获取小说标题和作者")
-            hxs = HtmlXPathSelector(response)
+            hxs = Selector(response)
             join = Join("")
-            _book = hxs.select(self.xpath_book).extract()
+            _book = hxs.xpath(self.xpath_book).extract()
             if self.author:
-                _author = hxs.select(self.author).extract()
+                _author = hxs.xpath(self.author).extract()
                 author = join(_author)
             else:
                 author = ""
@@ -113,9 +116,9 @@ class Lost(BaseSpider):
             return
 
     def _parse(self,response):
-        hxs = HtmlXPathSelector(response)
+        hxs = Selector(response)
         meta = response.meta
-        c = hxs.select(self.content).extract()
+        c = hxs.xpath(self.content).extract()
 
         l = LostLoader(item=ArticleItem(),response = response)
         l.add_value('url',response.url)
@@ -130,9 +133,55 @@ class Lost(BaseSpider):
             self.filters = f
         def __call__(self, content):
             for filter in self.filters:
-                log.msg(content[:100])
+                #log.msg(content[:100])
                 content = content.replace(smart_unicode(filter),u"")
             return content
 
+#class TestItem(Item):
+#    url = Field()
+#
+#class Test(BaseSpider):
+#    name = 'test'
+#    start_urls = ['http://www.fftxt.net/book/4837/']
+#
+#    def __init__(self, *args, **kwargs):
+#        super(Test, self).__init__(*args, **kwargs)
+#        self.s = kwargs['sett']
+#    def parse(self, response):
+#        args = type['fftxt']
+#        self.chapter_list = args.get('chapter_list',None)
+#        self.content = args.get('content',None)
+#        self.filters = args.get('filter',None)
+#        self.xpath_book = args.get('book',None)
+#        self.author = args.get('author',None)
+#        _sgml = SgmlLinkExtractor(restrict_xpaths=self.chapter_list)
+#        links = _sgml.extract_links(response)[:10]
+#        items = []
+#        for n,link in enumerate(links,start=1):
+#            i = TestItem()
+#            i['url'] = dict(url = link.url,s = self.s['USER_AGENTS'])
+#            items.append(i)
+#        return items
+#            #yield Request(url=link.url,callback=self._parse,meta=dict(link = link,num = n))
+#    def _parse(self,response):
+#        hxs = Selector(response)
+#        meta = response.meta
+#        c = hxs.xpath(self.content).extract()
+#
+#        l = LostLoader(item=ArticleItem(),response = response)
+#        l.add_value('url',response.url)
+#        l.add_value('name',meta['link'].text,Join(""),self._Filter(self.filters))
+#        l.add_value('content',['<p>%s</p>'%cc for cc in c],Join(),self._Filter(self.filters))
+#        l.add_value('order',int(100))
+#        l.add_value('novel','book')
+#        return l.load_item()
+#    class _Filter(object):
+#        def __init__(self,f):
+#            self.filters = f
+#        def __call__(self, content):
+#            for filter in self.filters:
+#                log.msg(content[:100])
+#                content = content.replace(smart_unicode(filter),u"")
+#            return content
 
 

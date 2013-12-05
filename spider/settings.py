@@ -1,29 +1,4 @@
-# Scrapy settings for novelspider project
-#
-# For simplicity, this file contains only the most important settings by
-# default. All the other settings are documented here:
-#
-#     http://doc.scrapy-0.16.org/topics/settings.html
-#
-import random
-#BOT_NAME = 'novelspider'
-#
-#SPIDER_MODULES = ['novelspider.spiders']
-#NEWSPIDER_MODULE = 'novelspider.spiders'
-#ITEM_PIPELINES = [
-#        'novelspider.pipelines.NovelspiderPipeline'
-#        ]
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'novelspider (+http://www.yourdomain.com)'
-#def setup_django_env(path):
-#    import imp, os
-#    from django.core.management import setup_environ
-#
-#    f, filename, desc = imp.find_module('settings', [path])
-#    project = imp.load_module('settings', f, filename, desc)
-#
-#    setup_environ(project)
-#setup_django_env('../../dnovel')
+
 
 CLOSESPIDER_PAGECOUNT = 1000
 CLOSESPIDER_TIMEOUT = 3600
@@ -54,5 +29,7 @@ USER_AGENTS = [
     "Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52",
 ]
 
-ITEM_PIPELINES=['spider.pipelines.CollectionPipeline']
-DEBUG='INFO'
+ITEM_PIPELINES={
+    'spider.pipelines.CollectionPipeline':800,
+}
+DEBUG='DEBUG'
