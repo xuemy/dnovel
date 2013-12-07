@@ -1,4 +1,4 @@
-
+from adminplus.sites import AdminSitePlus
 from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
@@ -6,8 +6,9 @@ from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from dnovel import settings
-import novel
 
+
+admin.site = AdminSitePlus()
 admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
@@ -21,7 +22,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
 
-)+ staticfiles_urlpatterns()
+)
 
 if settings.DEBUG:
     import debug_toolbar

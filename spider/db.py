@@ -9,8 +9,6 @@ __author__ = 'meng'
 
 import pymysql.cursors
 import pymysql.constants
-#import pymysql.constants.FIELD_TYPE
-#import pymysql.constants.FLAG
 import pymysql.converters
 import sqlite3
 import DBUtils.PooledDB

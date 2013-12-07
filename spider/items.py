@@ -12,4 +12,3 @@ class ArticleItem(Item):
     fetch = Field()
     order = Field()
     name = Field()
-    #db = Field()

@@ -52,7 +52,7 @@ class Novel(models.Model):
         ordering = ['-hot']
 @python_2_unicode_compatible
 class Chapter(models.Model):
-    novel = models.ForeignKey(Novel)
+    novel = models.ForeignKey(Novel,db_index=True)
     name = models.CharField(r'章节名',max_length=255)
     content = HTMLField(u'内容')
     volume = models.SmallIntegerField(default=1)
@@ -71,6 +71,7 @@ class Chapter(models.Model):
     def prev_chapter(self):
         prev = Chapter.objects.filter(novel=self.novel,order__lt = self.order).latest('order')
         return prev.get_chapter_url if prev else ""
+
     def __str__(self):
         return self.name
     class Meta:

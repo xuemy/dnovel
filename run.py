@@ -47,37 +47,6 @@ def setup_crawler(book,config = None,url = None):
             crawler.start()
             log.start(loglevel=logging.DEBUG)
             reactor.run()
-def test_setup_crawler(book,config = None,url = None):
-    try:
-        novel = Novel.objects.get(name = book)
-    except:
-        novel = None
-    if novel:
-        start_url = novel.start_url
-        #crawler = Crawler()
-
-        settings = get_project_settings()
-        spider = Test(start_urls = [start_url],book = novel,config = novel.spider_class,sett = settings)
-        crawler = Crawler(settings)
-        crawler.signals.connect(reactor.stop, signal=signals.spider_closed)
-        crawler.configure()
-        crawler.crawl(spider)
-        crawler.start()
-        log.start()
-        reactor.run()
-    else:
-        if config and url:
-            start_url = url
-            #crawler = Crawler()
-            settings = get_project_settings()
-            spider = Test(start_urls = [start_url],bookname = book,config = config,url = url,sett = settings)
-            crawler = Crawler(settings)
-            crawler.signals.connect(reactor.stop, signal=signals.spider_closed)
-            crawler.configure()
-            crawler.crawl(spider)
-            crawler.start()
-            #log.start(loglevel=logging.DEBUG)
-            reactor.run()
 if  __name__ == "__main__":
     setup_crawler('宝鉴',config='fftxt',url='http://www.fftxt.net/book/2982/')
     #setup_crawler('海上长城',config='fftxt',url='http://www.fftxt.net/book/4837/')
