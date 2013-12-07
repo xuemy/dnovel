@@ -70,8 +70,8 @@ MEDIA_URL = '/media/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
 
-#STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT),'temp','static')
-STATIC_ROOT = '/vagrant_data/dnovel/temp/static'
+STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT),'temp','static')
+#STATIC_ROOT = '/vagrant_data/dnovel/temp/static'
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
@@ -152,7 +152,6 @@ INSTALLED_APPS = (
     'south',
     'adminplus',
     'debug_toolbar',
-    'djcelery',
 )
 
 
