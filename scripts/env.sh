@@ -56,20 +56,18 @@ sudo apt-get install -y python-dev nginx libxml2-dev libxslt-dev python-lxml pyt
 
 
 # ========================python 虚拟机安装=====================
-# echo "正在安装python virtualenv"
-# sudo pip install virtualenvwrapper
 
 source /usr/local/bin/virtualenvwrapper.sh
 
 echo "创建virtualenv lost"
-mkvirtualenv lost
+sudo mkvirtualenv lost
 workon lost
 
 echo "python 安装所需要的包"
 
 cd $CURRENT_DIR
 
-pip install -r requirements.txt
+sudo pip install -r requirements.txt -q
 # =============================================================
 
 
@@ -79,6 +77,7 @@ pip install -r requirements.txt
 
 echo "生成运行脚本"
 test -d $DIR/conf || mkdir -p $DIR/conf
+cd $DIR/conf
 cat>run<<EOF
 #!/bin/bash
 
@@ -128,7 +127,7 @@ EOF
 
 
 echo "正在创建nginx配置文件"
-sudo cat>$SERVER_NAME<<EOF
+cat>$SERVER_NAME<<EOF
   upstream ${SERVER_NAME}app_server {
     server unix:${SOCKFILE} fail_timeout=0;
   }
@@ -136,7 +135,7 @@ sudo cat>$SERVER_NAME<<EOF
 
     listen 80;
     
-    server_name ${SERVER_NAME}
+    server_name ${SERVER_NAME};
     client_max_body_size 4G;
     keepalive_timeout 5;
 
@@ -180,7 +179,7 @@ sudo service nginx restart
 
 echo "配置supervisor文件"
 
-sudo cat>${SERVER_NAME}.conf<<EOF
+cat>${SERVER_NAME}.conf<<EOF
 [program:${SERVER_NAME}]
 command=sh ${CURRENT_DIR}/run
 user=`whoami`
