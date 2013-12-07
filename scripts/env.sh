@@ -9,6 +9,7 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 CURRENT_USER=$(whoami)
 
+
 #当前脚本所在目录的上级目录
 DIR="$(cd .. && pwd)"
 
@@ -16,20 +17,25 @@ DIR="$(cd .. && pwd)"
 SOCKFILE=/var/$SERVER_NAME/gunicorn.sock
 
 
-
 LOG_DIR=$DIR/temp/log
 if [[ ! -d $LOG_DIR ]]; then
-  #statements
   mkdir -p $LOG_DIR
 fi
 
 DJANGO_STATIC_DIR=$DIR/temp
+
 # nginx log
+
 NGINX_ERROR_LOG=$LOG_DIR/nginx-error.log
+
 NGINX_ACCESS_LOG=$LOG_DIR/nginx-access.log
+
 # gunicorn log
+
 GUNICORN_ERROR_LOG=$LOG_DIR/gunicorn.error.log
+
 GUNICORN_ACCESS_LOG=$LOG_DIR/gunicorn.access.log
+
 # supervisor log
 SUPERVISOR_LOG=$LOG_DIR/supervisor.log
 
@@ -42,34 +48,6 @@ fi
 if [[ ! -f $SUPERVISOR_LOG ]]; then
   touch $SUPERVISOR_LOG
 fi
-# =============================================================
-
-
-# =========================系统软件安装=========================
-#升级系统
-#apt-get -y update
-#apt-get -y upgrade
-
-# 安装python头文件
-sudo apt-get install -y python-dev nginx libxml2-dev libxslt-dev python-lxml python-pip supervisor virtualenvwrapper
-
-
-
-# ========================python 虚拟机安装=====================
-
-source /usr/local/bin/virtualenvwrapper.sh
-
-echo "创建virtualenv lost"
-sudo mkvirtualenv lost
-workon lost
-
-echo "python 安装所需要的包"
-
-cd $CURRENT_DIR
-
-sudo pip install -r requirements.txt -q
-# =============================================================
-
 
 
 
@@ -77,7 +55,9 @@ sudo pip install -r requirements.txt -q
 
 echo "生成运行脚本"
 test -d $DIR/conf || mkdir -p $DIR/conf
+
 cd $DIR/conf
+
 cat>run<<EOF
 #!/bin/bash
 
@@ -168,26 +148,15 @@ cat>$SERVER_NAME<<EOF
 
   }
 EOF
-NGINX_FILE=/etc/nginx/sites-enabled/$SERVER_NAME
-if [[  -f "$NGINX_FILE" ]]; then
-  sudo rm $NGINX_FILE
-fi
-
-# echo $CURRENT_DIR/$SERVER_NAME
-sudo ln -s $CURRENT_DIR/$SERVER_NAME /etc/nginx/sites-enabled/
-sudo service nginx restart
 
 echo "配置supervisor文件"
 
 cat>${SERVER_NAME}.conf<<EOF
 [program:${SERVER_NAME}]
-command=sh ${CURRENT_DIR}/run
+command=sh ${CURRENT_DIR}/conf/run
 user=`whoami`
 stdout_logfile=${SUPERVISOR_LOG}
 redirect_stderr=true
 EOF
-# # supervisorctl reread
-# # supervisorctl update
-# # supervisorctl start $SERVER_NAME
 echo "supdervisor文件配置成功"
 

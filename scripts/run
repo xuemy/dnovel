@@ -1,20 +1,20 @@
 #!/bin/bash
 
 #django 项目目录
-DJANGODIR=/vagrant_data/dnovel
+DJANGODIR=/vagrant_data
 
 #log配置文件所在地(gunicorn)
 LOGCONFIG=/vagrant_data/dnovel/scripts/logging.conf
 
 #unix socket 文件
-SOCKFILE=/var/lost.com/gunicorn.sock  # we will communicte using this unix socket
+SOCKFILE=/var/xmy.com/gunicorn.sock  # we will communicte using this unix socket
 
 
 USER=`whoami`
 GROUP=`whoami`
 
 NUM_WORKERS=4   
-NAME=lost
+
                                  
 DJANGO_SETTINGS_MODULE=dnovel.settings
 
@@ -40,5 +40,5 @@ exec gunicorn ${DJANGO_WSGI_MODULE}:application \
   --workers $NUM_WORKERS \
   --user=$USER --group=$GROUP \
   --bind=unix:$SOCKFILE \
-  --log-config=$LOGCONFIG \
+  --log-level=debug \
   --worker-class=egg:gunicorn#gevent
