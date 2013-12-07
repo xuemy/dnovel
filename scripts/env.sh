@@ -61,6 +61,7 @@ cd $DIR/conf
 cat>run<<EOF
 #!/bin/bash
 
+NAME=lost
 #django 项目目录
 DJANGODIR=${DIR}
 
@@ -85,7 +86,7 @@ echo "Starting $NAME as \`whoami\`"
 
 
 cd \$DJANGODIR
-source ../lost/bin/activate
+source ./lost/bin/activate
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR/lost:$PYTHONPATH
 
