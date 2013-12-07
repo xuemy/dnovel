@@ -8,6 +8,5 @@ django-tinymce
 pil
 gunicorn
 django-debug-toolbar
-unicodedata
 markupsafe
 django-adminplus

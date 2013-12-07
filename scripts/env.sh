@@ -4,34 +4,46 @@ echo "输入域名eg：baidu.com"
 read SERVER_NAME
 # ============================================================
 #
+
 #当前脚本所在的目录
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 CURRENT_USER=$(whoami)
 
+cd $CURRENT_DIR
 
 #当前脚本所在目录的上级目录
 DIR="$(cd .. && pwd)"
 
 #unix socket 文件
-SOCKFILE=/var/$SERVER_NAME/gunicorn.sock
+SOCKFILE=$DIR/run/gunicorn.sock
 
+cd $DIR
 
+virtualenv lost
+
+source ./lost/bin/activate
+echo "python 安装所需要的包"
+pip install -r requirements.txt -q
+
+#export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+
+#项目log文件夹
 LOG_DIR=$DIR/temp/log
+
 if [[ ! -d $LOG_DIR ]]; then
   mkdir -p $LOG_DIR
 fi
 
+#django static root目录
 DJANGO_STATIC_DIR=$DIR/temp
 
 # nginx log
-
 NGINX_ERROR_LOG=$LOG_DIR/nginx-error.log
 
 NGINX_ACCESS_LOG=$LOG_DIR/nginx-access.log
 
 # gunicorn log
-
 GUNICORN_ERROR_LOG=$LOG_DIR/gunicorn.error.log
 
 GUNICORN_ACCESS_LOG=$LOG_DIR/gunicorn.access.log
@@ -60,8 +72,8 @@ cd $DIR/conf
 
 cat>run<<EOF
 #!/bin/bash
-
 NAME=lost
+
 #django 项目目录
 DJANGODIR=${DIR}
 
@@ -87,8 +99,8 @@ echo "Starting $NAME as \`whoami\`"
 
 cd \$DJANGODIR
 source ./lost/bin/activate
-export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
-export PYTHONPATH=$DJANGODIR/lost:$PYTHONPATH
+export DJANGO_SETTINGS_MODULE=\$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=\$DJANGODIR/lost:\$PYTHONPATH
 
 export DJANGO_SETTINGS_MODULE=\$DJANGO_SETTINGS_MODULE
 
@@ -98,7 +110,7 @@ test -d \$RUNDIR || mkdir -p \$RUNDIR
 
 # Start your Django Unicorn
 # Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
-exec gunicorn \${DJANGO_WSGI_MODULE}:application \\
+exec ../lost/bin/gunicorn \${DJANGO_WSGI_MODULE}:application \\
   --name \$NAME \\
   --workers \$NUM_WORKERS \\
   --user=\$USER --group=\$GROUP \\
