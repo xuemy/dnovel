@@ -22,10 +22,9 @@ DJANGO_WSGI_MODULE=dnovel.wsgi
 
 echo "Starting  as `whoami`"
 
-
 cd $DJANGODIR
-source /usr/local/bin/virtualenvwrapper.sh
-workon lost
+
+
 
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 

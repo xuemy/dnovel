@@ -85,8 +85,9 @@ echo "Starting $NAME as \`whoami\`"
 
 
 cd \$DJANGODIR
-source /usr/local/bin/virtualenvwrapper.sh
-workon lost
+source ../lost/bin/activate
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR/lost:$PYTHONPATH
 
 export DJANGO_SETTINGS_MODULE=\$DJANGO_SETTINGS_MODULE
 
@@ -153,7 +154,7 @@ echo "配置supervisor文件"
 
 cat>${SERVER_NAME}.conf<<EOF
 [program:${SERVER_NAME}]
-command=sh ${CURRENT_DIR}/conf/run
+command=sh ${DIR}/conf/run
 user=`whoami`
 stdout_logfile=${SUPERVISOR_LOG}
 redirect_stderr=true

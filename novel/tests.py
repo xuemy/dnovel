@@ -7,7 +7,7 @@ Replace this with more appropriate tests for your application.
 
 from django.test import TestCase
 
-
+import gunicorn
 class SimpleTest(TestCase):
     def test_basic_addition(self):
         """
