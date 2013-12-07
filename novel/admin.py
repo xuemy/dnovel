@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from django.http import HttpResponse
 from django.shortcuts import render_to_response
 
 __author__ = 'meng'

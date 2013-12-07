@@ -10,3 +10,4 @@ gunicorn
 django-debug-toolbar
 unicodedata
 markupsafe
+django-adminplus

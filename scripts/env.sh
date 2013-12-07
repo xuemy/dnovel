@@ -66,6 +66,9 @@ mkvirtualenv lost
 workon lost
 
 echo "python 安装所需要的包"
+
+cd $CURRENT_DIR
+
 pip install -r requirements.txt
 # =============================================================
 
@@ -75,6 +78,7 @@ pip install -r requirements.txt
 # ===========================生成脚本============================
 
 echo "生成运行脚本"
+test -d $DIR/conf || mkdir -p $DIR/conf
 cat>run<<EOF
 #!/bin/bash
 
