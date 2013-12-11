@@ -59,8 +59,8 @@ def slugify(value, substitutions=()):
 
 class Lost(BaseSpider):
     name = 'lost'
-    def __init__(self,**kwargs):
-        super(Lost, self).__init__(**kwargs)
+    def __init__(self,*args, **kwargs):
+        super(Lost, self).__init__(*args,**kwargs)
         self.config = kwargs.get('config',None)
         self.book = kwargs.get('book',None)
 

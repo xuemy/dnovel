@@ -16,3 +16,4 @@ scripts/test.*
 scripts/build/*
 temp/static/*
 temp/.vagrant/*
+*.db

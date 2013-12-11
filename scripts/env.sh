@@ -24,6 +24,7 @@ virtualenv lost
 
 source ./lost/bin/activate
 echo "python 安装所需要的包"
+cd $CURRENT_DIR
 pip install -r requirements.txt -q
 
 #export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
@@ -110,12 +111,12 @@ test -d \$RUNDIR || mkdir -p \$RUNDIR
 
 # Start your Django Unicorn
 # Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
-exec ../lost/bin/gunicorn \${DJANGO_WSGI_MODULE}:application \\
+exec ./lost/bin/gunicorn \${DJANGO_WSGI_MODULE}:application \\
   --name \$NAME \\
   --workers \$NUM_WORKERS \\
   --user=\$USER --group=\$GROUP \\
   --bind=unix:\$SOCKFILE \\
-  --log-level=debug \\
+  --log-config=\$LOGCONFIG \\
   --worker-class=egg:gunicorn#gevent
 EOF
 
