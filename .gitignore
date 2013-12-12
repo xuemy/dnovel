@@ -17,3 +17,4 @@ scripts/build/*
 temp/static/*
 temp/.vagrant/*
 *.db
+*.sqlite3

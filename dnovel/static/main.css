@@ -25,7 +25,7 @@ body{
     /*border-top: 8px solid #282b36;*/
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAFZCAIAAAA96mnzAAACKklEQVR4Xn2VUW7kMAxD+QLf/1x7gv71LNwdKTLhZFtggMCwSVEUPdb3159/v0uSrM8HtGRZuoQk1R69J12o9ixJWvSnVyfLdbNw0XAXWe1fIL8BoqmNGiV/cHc9Gq4NXxLKHhteRyLpA28cl0SLdx0BckSWL4gkPlIVTg1nN9Ys3iyWI5AGDA5xOXB5BJaWmOw6KSLeU6+0P50QshQyEL2im/YMIL60dTSZ3RXenlkiJpMj8XPMAl1FtjMRW19NxzOE5VGWPVGrc7aSJgz1Y9ku57mpYSwn1h0ivFOXxoCKMCXiahbbZNIZR+tkphllPsomipCwb4GMkXTmPfVg40Jt2y4RQM/PqX5JTM4iiTN8Zz1XvbIAEEvoEW+3nxTLL3lB7t7J3WwyI7g5OVxKIeFEH4FIGLC9I+XqvSd4AxJM5O6WTPr54RAxLG44FVrEuz+kFdXyLiuX6kLPVLZL2ISlcHNlBIKm5rR8nEi9wJeA6Y8JZlJOyDiin0K5ag+AXHtALBicXasjIUu9h0STBbCMU+89gMnu/J05MU1QWqdbPMRPIZIzDgsi8Olg5t7wHhUg/pv5RUzO+BHDmczHkAfZWxlSYgNI5Ig5XRoc66dW9L45eHDkbkqCO7RLG5cna/HD7YhZnfINkFo8iNyj5kx6pFrxNGRlfhV2e1Zt5DnGU8T7Tud1ivi8jU8/3Zy88pkn6+zdXiJ7AVSFBZA3VcwDfXtt5UUHS38B35hQVuJip4MAAAAASUVORK5CYII=") repeat-x scroll 0 0 #EBE7DF;
     color: #282B36;
-    font-family: 'Microsoft Yahei', 宋体, 微软雅黑, Arial, 'Lucida Grande', Tahoma, sans-serif
+    font-family: 'Microsoft Yahei',宋体,微软雅黑, Arial, 'Lucida Grande', Tahoma, sans-serif
 }
 header{
     font-size: 40px;
@@ -264,8 +264,8 @@ content: normal;
 }
 .chapter-content p{
     color:#000;
-    font-size: 17px;
-    line-height: 30px;
+    font-size: 22px;
+    line-height: 44px;
     letter-spacing: 2px;
     margin-bottom: 35px;
 }

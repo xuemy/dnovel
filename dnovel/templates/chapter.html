@@ -27,7 +27,7 @@
                 <h2 class="text-center">{{ chapter.name }}</h2>
                 <script language=javascript>
                     document.onkeydown=nextpage
-                    var prevpage="{{ chpater.prev_chapter }}" //向左
+                    var prevpage="{{ chapter.prev_chapter }}" //向左
                     var nextpage="{{ chapter.next_chapter }}" //向右
                     var bookpage="{{ book.get_novel_url }}" //回车
                     function nextpage(event)
