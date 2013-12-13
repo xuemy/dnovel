@@ -21,22 +21,14 @@
                 {% if category.novel_set.all %}
                 <li>
                     <strong style="float: left;"><a href="{{ category.get_category_url }}" style="color: #333333;text-decoration: none">{{ category }}:</a></strong>
-
-                        {% for novel in category.novel_set.all %}
-                            <span class="col-md-2 text-center"><a href="{{ novel.get_novel_url }}">{{ novel }}</a></span>
-                        {% endfor %}
-
-                    <strong>
-                        <a href="{{ category.get_category_url }}"
-                           style="color: #333333;text-decoration: none">更多>></a>
-                    </strong>
+                    {% for novel in category.novel_set.all %}<span class="text-center"><a href="{{ novel.get_novel_url }}">{{ novel }}</a></span>{% endfor %}
+                    <strong style="float: right"><a href="{{ category.get_category_url }}" style="color: #333333;text-decoration: none">更多>></a></strong>
                 </li>
                 {% endif %}
             {% endfor %}
         </ul>
     </div>
     <div class="social">
-
     </div>
     <div class="index-page">
         <h2 class="category-hot text-center">{{ index_book.name }}<small>({{ index_book.author }})</small></h2>

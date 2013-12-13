@@ -1,10 +1,7 @@
 {% extends "base.html" %}
-{% block title %}
-    {{ book.name }}
-{% endblock %}
-{% block description %}
-    {{ book.description }}
-{% endblock %}
+{% block title %}{% if book.seo_title %}{{ book.seo_title }}{% else %}{{ book.name }} 最新章节 无弹窗广告 {{ book.name }}TXT全文下载 -{{ site_name }}{% endif %}{% endblock %}
+{% block keywords %}{% if book.seo_keyword %}{{ book.seo_keyword }}{% else %}{{ book.name }},{{ book.name }}无弹窗阅读,{{ book.name }}TXT全文下载,{{ book.name }}在线阅读{% endif %}{% endblock %}
+{% block description %}{{ book.description }}{% endblock %}
 
 {% block body %}
     <body style="background:#282b36 repeat-x scroll 0 0">
