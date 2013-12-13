@@ -1,10 +1,13 @@
 # Django settings for dnovel project.
 import os
-#DEBUG = False
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-
+#import djcelery
+#djcelery.setup_loader()
+#
+#BROKER_URL = 'django://'
+#CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -182,3 +185,11 @@ LOGGING = {
         },
     }
 }
+#TINYMCE_JS_URL = os.path.join(STATIC_URL,'tinymce/tinymce.min.js')
+#TINYMCE_JS_ROOT= os.path.join(STATIC_URL,'tinymce/')
+#TINYMCE_DEFAULT_CONFIG = {
+#    #'plugins': "table,spellchecker,paste,searchreplace",
+#    'theme': "modern",
+#    #'cleanup_on_startup': True,
+#    #'custom_undo_redo_levels': 10,
+#}

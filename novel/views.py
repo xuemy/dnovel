@@ -6,10 +6,15 @@ from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.template import RequestContext
 from novel.models import SEO, Category, Novel, Chapter
-from django.views.decorators.gzip import gzip_page
+
 __author__ = 'meng'
 
-@gzip_page
+#def my_response(*args,**kwargs):
+#    kwargs.update(dict(
+#        context_instance=RequestContext(request)
+#    ))
+#    return render_to_response(*args,**kwargs)
+
 def index(request):
     """
 
@@ -32,7 +37,7 @@ def index(request):
     else:
         return  HttpResponse("请在后台选择一本小说")
 
-@gzip_page
+
 def category(request,category_alias):
     """
 
@@ -46,7 +51,7 @@ def category(request,category_alias):
     )
     return render_to_response('category.html',template_var,context_instance=RequestContext(request))
     #return HttpResponse('ok')
-@gzip_page
+
 def book(request,book_alias):
     '''
     小说详情页（章节页）
@@ -59,7 +64,6 @@ def book(request,book_alias):
     )
     return render_to_response('book.html',template_var,context_instance=RequestContext(request))
     #return HttpResponse('ok')
-@gzip_page
 def chapter(request,book_alias,chapter_id):
     '''
     章节页
