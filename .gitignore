@@ -19,3 +19,4 @@ temp/.vagrant/*
 *.db
 *.sqlite3
 temp/*
+public/*
