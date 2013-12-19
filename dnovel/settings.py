@@ -1,8 +1,10 @@
 # Django settings for dnovel project.
 import os
-#DEBUG = False
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+
 
 
 ADMINS = (
@@ -52,8 +54,8 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-import os
-PROJECT_ROOT = os.path.dirname(__file__)
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media').replace('\\','/')
 
@@ -67,20 +69,28 @@ MEDIA_URL = '/media/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
 
-STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT),'temp','static')
-#STATIC_ROOT = '/vagrant_data/dnovel/temp/static'
+STATIC_ROOT = os.path.join(PROJECT_ROOT,'temp','static')
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
 
+THEME = "temp2"
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_ROOT,'static').replace('\\','/'),
+    #os.path.join(PROJECT_ROOT,'static').replace('\\','/'),
+    os.path.join(PROJECT_ROOT,'templates',THEME,"static").replace('\\','/'),
 )
 
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_ROOT, 'templates',THEME).replace('\\','/'),
+)
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -126,12 +136,7 @@ INTERNAL_IPS = ["127.0.0.1","10.0.2.2"]
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'dnovel.wsgi.application'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
-)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',

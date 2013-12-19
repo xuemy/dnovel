@@ -10,9 +10,10 @@ from dnovel import settings
 
 admin.site = AdminSitePlus()
 admin.autodiscover()
+
 urlpatterns = patterns('',
     # Examples:
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^xmy/', include(admin.site.urls)),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'', include('novel.urls')),
     # url(r'^dnovel/', include('dnovel.foo.urls')),
@@ -23,10 +24,9 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
 
 )
-
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += patterns('',
-        url(r'^__debug__/', include('debug_toolbar.urls')),
+        url(r'^__debug__/', include(debug_toolbar.urls)),
     )
 

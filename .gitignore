@@ -18,3 +18,4 @@ temp/static/*
 temp/.vagrant/*
 *.db
 *.sqlite3
+temp/*

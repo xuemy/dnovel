@@ -1,12 +1,17 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from novel.models import Category, SEO, Links
+from novel.models import Category, SEO, Links,Novel
 
 __author__ = 'meng'
 
 
 def my_processor(request):
     seo = SEO.objects.all()
+    random_novel = Novel.objects.order_by("?")
+    if random_novel:
+        random_novel = random_novel[:10]
+    else:
+        random_novel = None
     if seo:
         seo = seo[0]
         return dict(
@@ -17,6 +22,7 @@ def my_processor(request):
             google = seo.google,
             link_list = Links.objects.all(),
             seo = seo,
+            random_novel = random_novel
 
         )
     else:

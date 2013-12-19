@@ -1,0 +1,137 @@
+
+/*@media (min-width: 768px){*/
+    /*.navbar-header,.navbar-collapse{*/
+        /*display: inline;*/
+    /*}*/
+/*}*/
+body{
+    background-color: #EAF1F1;
+}
+.wrapper{
+    margin-top:65px;
+
+}
+#scrollUp {
+    background: url("../img/top.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    bottom: 20px;
+    height: 38px;
+    right: 20px;
+    width: 38px;
+}
+.no-margin{
+    margin: 0 !important;
+}
+.breadcrumb{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+.random_novel{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.random_novel:visited{
+    color: orangered;
+}
+.limit-word{
+	white-space: nowrap;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	text-overflow:ellipsis;
+}
+.dl-chapterlist{
+    background-color: #ffffff;
+}
+.dl-chapterlist  dt{
+    font-size: 20px;
+    padding: 5px 0;
+
+}
+.dl-chapterlist > dd{
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #a1a780;
+        background-color: #ffffff;
+
+}
+.dl-chapterlist > dd >a{
+    color: #2c8a6e;
+    font-weight: 400;
+}
+.dl-chapterlist > dd >a:visited{
+    color: #b24215;;
+}
+
+.dl-chapterlist .first{
+    border-left: 2px solid #a1a780;
+}
+.dl-chapterlist .last{
+    border-right: 2px solid #a1a780;
+}
+.novel-info .info{
+    margin-left: 10px;
+    width: 75%;
+}
+.novel-info .panel{
+    margin-bottom: 0px;
+}
+.novel-title{
+    font-size: 20px;
+}
+.novel-download{
+    margin-top: 10px;
+}
+
+.book-list .panel{
+    margin-bottom: 5px;
+}
+.book-list .panel-body{
+    height: 160px;
+}
+.book-list .panel-body{
+    padding: 5px;
+}
+
+.book-list .panel-body .width-70 h4{
+    margin: 0;
+    margin-bottom: 3px;
+}
+.book-list .panel-body .width-70 h4 a{
+        color: #b24215;
+}
+.book-list .panel-body .img-thumbnail{
+    width: 120px;
+    height: 150px;
+    background-color: #cecece;
+}
+.book-list .panel-body .width-70 p{
+    margin-bottom: 0px;
+    /*font-size: 14px;*/
+}
+.book-description{
+    color: #bcbcbc;
+    height: 100px;
+    border-top: 1px dotted #cecece;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+
+}
+.width-70{
+    width: 70%;
+    margin-left: 10px;
+}
+
+.chapter-info .title{
+    font-size: 20px;
+}
+.chapter-info .content p{
+    font-size: 22px;
+    line-height: 40px;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}

@@ -1,0 +1,22 @@
+<div class="container book-list">
+    <div class="row">
+        {% for novel in novel_list %}
+            <div class="col-md-6">
+            <div class="panel">
+                <div class="panel-body">
+                {% load static %}
+                <img class="img-thumbnail pull-left" src="{{ novel.image }}" alt="" width="120" height="160"/>
+                <div class="pull-left width-70">
+                    <h4><a href="{{ novel.get_novel_url }}" title="{{ novel.name }}">{{ novel.name }}</a></h4>
+                    <p>作者:&nbsp;{{ novel.author }}</p>
+                    <p class="book-description">
+                        <a href="{{ novel.last_chapter.get_chapter_url }}" title="{{ novel.last_chapter }}">{{ novel.last_chapter }}</a><br>
+                    {{ novel.description|safe }}
+                    </p>
+                </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container" style="border-top: 2px solid #222222">
+    <p class="no-margin text-center">本站所有小说为转载作品，所有章节均由网友上传，转载至本站只是为了宣传本书让更多读者欣赏。</p>
+    <p class="no-margin text-center">Copyright © 2012 {{ site_name }} All Rights Reserved.</p>
+    <p class="no-margin text-center">Power by <a href="http://www.djangoproject.com">Django</a></p>
+</div>
+<a id="scrollUp" href="#top" title="" style="position: fixed; z-index: 2147483647; display: block;"></a>
+{% load staticfiles %}
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{% static "js/jquery-1.10.1.min.js" %}"><\/script>')</script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/ad.js' %}"></script>
+<script>
+      $(document).ready(function(){
+        $.scrollUp({
+              scrollName: 'scrollUp', // Element ID
+              topDistance: '300', // Distance from top before showing element (px)
+              topSpeed: 300, // Speed back to top (ms)
+              animation: 'fade', // Fade, slide, none
+              animationInSpeed: 200, // Animation in speed (ms)
+              animationOutSpeed: 200, // Animation out speed (ms)
+              scrollText: '', // Text for element
+              activeOverlay: false  // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+        });
+      });
+    </script>
+<script>var _gaq = [['_setAccount', '{{ google }}'],['_trackPageview']];(function (d, t) {var g = d.createElement(t), s = d.getElementsByTagName(t)[0];g.src = '//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g, s)}(document, 'script'));</script>

@@ -38,17 +38,12 @@
                                                                          class="col-md-3" alt=""/></a>
             <div class="col-md-6">
                 <div class="book-info-title">
-                    <h2><a href="{{ novel.get_novel_url }}" title="{{ novel.name }}"
-                           style="text-decoration: none;">{{ novel.name }}</a>
-                        <small>{{ novel.author }}</small>
-                    </h2>
+                    <h2>
+                        <a href="{{ novel.get_novel_url }}" title="{{ novel.name }}"   style="text-decoration:none;">{{ novel.name }}</a><small>{{ novel.author }}</small></h2>
                 </div>
                 <p>类型:{{ novel.category }}</p>
-
                 <p>最新章节: <a href="{{ novel.last_chapter.get_chapter_url }}">{{ novel.last_chapter }}</a></p>
-
-                <p>最近更新:{{ novel.last_chapter.update_time }} </p>
-
+                <p>最近更新:{{ novel.last_chapter.update_time|date:'Y-m-d H:i' }} </p>
                 <p style="height: 120px;overflow: hidden">简介:{{ novel.last_chapter.description|safe }}</p>
             </div>
             <div class="col-md-3">
@@ -58,9 +53,7 @@
         <div class="row book-chapter">
             <ul class="list-unstyled" style="width: 850px;margin: 0 auto;">
                 {% for c in chapter_list %}
-                    <li class="col-md-4 chapter limit-word" style="margin-bottom: 10px;">
-                        <a href="{{ c.get_chapter_url }}" title="{{ c.name }}">{{ c.name }}</a>
-                    </li>
+                    <li class="col-md-4 chapter limit-word" style="margin-bottom: 10px;"><a href="{{ c.get_chapter_url }}" title="{{ c.name }}">{{ c.name }}</a></li>
                 {% endfor %}
             </ul>
         </div>

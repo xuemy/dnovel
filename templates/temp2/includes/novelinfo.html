@@ -1,0 +1,36 @@
+<div class="container novel-info">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="novel-img pull-left hidden-xs">
+                        {% load static %}
+                        <img src="{% static '367s.jpg' %}" alt="" width="130" height="150"/>
+                        <div class="novel-download text-center">
+                            <a href="{{ novel.get_novel_download_url }}">下载TXT小说</a>
+                        </div>
+                    </div>
+                    <div class="pull-left info">
+                        <div class="novel-title">
+                        {{ novel.name }}
+                        </div>
+                        <div class="novel-author">
+                        作者: {{ novel.author }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        所属: <a href="{{ novel.category.get_category_url }}">{{ novel.category.name }}</a>
+                        </div>
+                        <div class="novel-update">
+                        最近更新: <a href="{{ novel.get_last_chapter.get_chapter_url }}" title="{{ novel.get_last_chapter }}">{{ novel.get_last_chapter }}</a>
+                        </div>
+                        <div class="novel-description">
+                        小说介绍:{{ novel.description|safe }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+        {% include "ad/novel-info-ad.html" %}
+        </div>
+    </div>
+</div>

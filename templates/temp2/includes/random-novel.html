@@ -1,0 +1,10 @@
+<ul class="list-inline">
+{% for novel in random_novel %}
+{#    {% ifequal novel seo.index_book %}#}
+{#        <li><a href="/" title="{{  seo.index_book.name }}">{{ seo.index_book.name }}</a></li>#}
+{#    {% else %}#}
+        <li><a href="{{ novel.get_novel_url }}" title="novel.get_novel_url">{{ novel.name }}</a></li>
+{#    {% endifequal %}#}
+{% endfor %}
+
+</ul>

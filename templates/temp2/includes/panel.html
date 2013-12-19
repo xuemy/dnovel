@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">推荐阅读</h3>
+        </div>
+        <div class="panel-body">
+            {% for r_novel in random_novel %}<a href="{{ r_novel.get_novel_url }}" title="{{ r_novel.name }}" class="random_novel">{{ r_novel.name }}
+                </a>{% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "includes/header.html" %}
+</head>
+<body>
+<div class="wrapper">
+    {% include "includes/nav.html" %}
+{#    {% include "includes/panel.html" %}#}
+    {% block content %}
+    {% endblock %}
+    {% include "includes/footer.html" %}
+</div>
+</body>
+</html>

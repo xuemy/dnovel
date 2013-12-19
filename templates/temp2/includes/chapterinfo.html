@@ -1,0 +1,40 @@
+<div class="container chapter-info">
+    <div class="panel panel-info">
+        <div class="panel-heading text-center title">
+            {{ chapter.name }}
+        </div>
+        <div class="panel-body content">
+            {% include "ad/content-ad.html" %}
+            {{ chapter.content|safe }}
+            {% include "includes/random-novel.html" %}
+            <script language=javascript>
+                    document.onkeydown=nextpage
+                    var prevpage="{{ chapter.prev_chapter }}" //向左
+                    var nextpage="{{ chapter.next_chapter }}" //向右
+                    var bookpage="{{ book.get_novel_url }}" //回车
+                    function nextpage(event)
+                    {
+                     event = event ? event : (window.event ? window.event : null);
+
+                     if (event.keyCode==13) location=bookpage;//回车
+                     if (event.keyCode==37) location=prevpage;//向左
+                     if (event.keyCode==39) location=nextpage;//向右
+
+                    }
+
+                    </script>
+                <p class="text-center no-margin">
+                    <a href="{{ chapter.prev_chapter }}">上一章</a>
+                    <a href="{{ novel.get_novel_url }}" STYLE="margin-left: 5px;margin-right: 5px">返回目录</a>
+                    <a href="{{ chapter.next_chapter }}">下一章</a>
+                </p>
+                <p class="text-center no-margin">
+                   <small >键盘控制:回车返回小说目录，左右箭头翻页</small>
+                </p>
+                <p class="no-margin text-center" style="font-size: 12px;color: #8c8c8c;line-height: 14px">
+                    小说《{{ novel.name }}》, 正文 {{ chapter.name }}版权归作者{{ novel.author }}所有,全文由网友上传,转载到本站
+                    只是为了方便大家阅读,如果大家喜欢本小说,请到小说发布站支持作者,您的支持是作者写小说的动力
+                </p>
+        </div>
+    </div>
+</div>

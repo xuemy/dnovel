@@ -1,0 +1,74 @@
+<div class="container">
+    <h4>{{ novel.name }}最新章节:{% ifequal slug "index" %}<a href="{{ novel.get_novel_download_url }}">(下载本小说)</a>{% endifequal %} </h4>
+    <dl class="dl-chapterlist">
+        {% for volume,chapter in chapterlist.items %}
+            <dt class="text-center alert-info">{{ volume }}</dt>
+            {% load novel_filter %}
+            {% for c_list in chapter|cut_list %}
+                {% for c in c_list %}
+                    {% if c %}
+                        {% if forloop.first %}
+                            <dd class="col-md-4 col-sm-4 col-xs-12 first"><a href="{{ c.get_chapter_url }}" title="{{ c.name }}" class="limit-word">{{ c.name }}</a></dd>
+                        {% elif forloop.last %}
+                            <dd class="col-md-4 col-sm-4 col-xs-12 last"><a title="{{ c.name }}" href="{{ c.get_chapter_url }}" class="limit-word">{{ c.name }}</a></dd>
+                        {% else %}
+                            <dd class="col-md-4 col-sm-4 col-xs-12 "><a title="{{ c.name }}" href="{{ c.get_chapter_url }}" class="limit-word">{{ c.name }}</a></dd>
+                        {% endif %}
+                    {% else %}
+                        {% if forloop.first %}
+                            <dd class="col-md-4 col-sm-4 col-xs-12 first ">&nbsp;&nbsp;</dd>
+                        {% elif forloop.last %}
+                            <dd class="col-md-4 col-sm-4 col-xs-12 last ">&nbsp;&nbsp;</dd>
+                        {% else %}
+                            <dd class="col-md-4 col-sm-4 col-xs-12 ">&nbsp;&nbsp;</dd>
+                        {% endif %}
+                    {% endif %}
+
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+        {% ifnotequal slug "index" %}
+            <dd class="col-md-12 col-sm-12 col-xs-12    ">
+                推荐阅读
+            </dd>
+            {% for n_random in random_novel|cut_list %}
+                {% for n in n_random %}
+                    {% if n %}
+                        {% ifnotequal n.name novel.name %}
+                            <dd class="col-md-4 col-sm-4 col-xs-12"><a href="{{ n.get_novel_url }}">{{ n.name }}</a></dd>
+                        {% endifnotequal %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endifnotequal %}
+    </dl>
+</div>
+<div class="container">
+            <p class="text-center no-margin" style="font-size: 13px;padding-top:5px;border-top: 2px solid #eeeeee">
+            {{ novel.name }}是{{ novel.author }}最新写的一部{{ novel.category }}小说,小说跌但起伏，扣人心弦，{{ site_name }}为您
+            转载收集{{ novel.name }}的最新章节</p>
+</div>
+{#<div class="container">#}
+{#    <div class="panel-heading">#}
+{#        {{ novel.name }}最新章节#}
+{#    </div>#}
+{#    <table class="table table-bordered table-striped">#}
+{#        {% for volume,chapter in chapterlist.items %}#}
+{#        <tr>#}
+{#        <th colspan="3" class="text-center">{{ volume }}</th>#}
+{#        </tr>#}
+{#            {% load novel_filter %}#}
+{#            {% for c_list in chapter|cut_list %}#}
+{#                <tr>#}
+{#                {% for c in c_list %}#}
+{#                    {% if c %}<td><a href="{{ c.get_chapter_url }}">{{ c.name }}</a></td>#}
+{#                    {% else %}<td>&nbsp;&nbsp;</td>#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+{#                </tr>#}
+{#            {% endfor %}#}
+{##}
+{#        {% endfor %}#}
+{#        #}
+{#    </table>#}
+{#</div>#}

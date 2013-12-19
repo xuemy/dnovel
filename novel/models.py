@@ -1,5 +1,5 @@
 #encoding:utf-8
-from django.db import models
+from django.db import models,connection
 # Create your models here.
 from django.utils.encoding import python_2_unicode_compatible
 from tinymce.models import HTMLField
@@ -12,7 +12,7 @@ class Category(models.Model):
 
     @property
     def get_category_url(self):
-        return '/cat/%s' % self.alias
+        return '/%s/' % self.alias
     def __str__(self):
         return self.name
 
@@ -23,7 +23,7 @@ class Novel(models.Model):
     alias = models.CharField(u"小说拼音",max_length=100,unique=True,db_index=True,blank=True)
     author = models.CharField(u'作者',max_length=50,blank=True)
     description = models.TextField(u"小说简介",blank=True)
-    #last_chapter = models.CharField(u'最新更新章节',max_length=)
+    last_chapter = models.IntegerField(u'最新章节',blank=True,default=0)
     is_over = models.BooleanField(u"小说是否完结",blank=True)
     image = models.ImageField(u"封面图片",upload_to='novel_cover',max_length=255,blank=True)
     hot = models.IntegerField(db_index=True,default=1)
@@ -38,18 +38,50 @@ class Novel(models.Model):
     seo_keyword = models.CharField(u"SEO关键字",max_length=255,blank=True)
     seo_description = models.TextField(u"SEO描述",blank=True)
 
+    #@property
+    #def last_chapter(self):
+    #    return self.chapter_set.order_by('-order')[0] or None
+    #    #return self.chapter.
+
     @property
-    def last_chapter(self):
-        return self.chapter_set.order_by('-order')[0] or None
-        #return self.chapter.
+    def get_last_chapter(self):
+        if self.last_chapter:
+            try:
+                chapter = Chapter.objects.filter(novel = self,order = self.last_chapter).get()
+            except:
+                chapter = self.chapter_set.order_by('-order')[0] or None
+            return chapter
+        else:
+            return self.chapter_set.order_by('-order')[0] or None
     @property
     def get_novel_url(self):
-        return '/book/%s' % self.alias
+        return '/book/%s/' % self.alias
+    @property
+    def get_novel_download_url(self):
+        return '/book/%s/download/'% self.alias
+    @property
+    def get_novel_chapter(self):
+        """"""
+        volume = Chapter.objects.filter(novel = self).values("volume","volume_name").order_by("volume").distinct()
+        chapterlist = self.chapter_set.all()
+        result = dict()
+        for v in volume:
+            _r = []
+            for chapter in chapterlist:
+                if chapter.volume == v['volume']:
+                    _r.append(chapter)
+            result[v['volume_name']] = _r
+        return result
+
+
 
     def __str__(self):
         return self.name
     class Meta:
         ordering = ['-hot']
+        index_together = [
+            ['id','last_chapter']
+        ]
 @python_2_unicode_compatible
 class Chapter(models.Model):
     novel = models.ForeignKey(Novel,db_index=True)
@@ -71,6 +103,8 @@ class Chapter(models.Model):
     def prev_chapter(self):
         prev = Chapter.objects.filter(novel=self.novel,order__lt = self.order).latest('order')
         return prev.get_chapter_url if prev else ""
+
+
 
     def __str__(self):
         return self.name
