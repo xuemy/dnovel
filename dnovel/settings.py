@@ -57,7 +57,7 @@ USE_TZ = True
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media').replace('\\','/')
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'public','media').replace('\\','/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
