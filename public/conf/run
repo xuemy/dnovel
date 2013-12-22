@@ -1,0 +1,43 @@
+#!/bin/bash
+
+#django 项目目录
+DJANGODIR=/vagrant_data
+
+#log配置文件所在地(gunicorn)
+LOGCONFIG=/vagrant_data/dnovel/scripts/logging.conf
+
+#unix socket 文件
+SOCKFILE=/var/xmy.com/gunicorn.sock  # we will communicte using this unix socket
+
+
+USER=`whoami`
+GROUP=`whoami`
+
+NUM_WORKERS=4   
+
+                                 
+DJANGO_SETTINGS_MODULE=dnovel.settings
+
+DJANGO_WSGI_MODULE=dnovel.wsgi
+
+echo "Starting  as `whoami`"
+
+cd $DJANGODIR
+
+
+
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+
+# Create the run directory if it doesn't exist
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+# Start your Django Unicorn
+# Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
+exec gunicorn ${DJANGO_WSGI_MODULE}:application \
+  --name $NAME \
+  --workers $NUM_WORKERS \
+  --user=$USER --group=$GROUP \
+  --bind=unix:$SOCKFILE \
+  --log-level=debug \
+  --worker-class=egg:gunicorn#gevent

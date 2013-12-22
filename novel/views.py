@@ -5,8 +5,11 @@ from functools import wraps
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.template import RequestContext
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 from novel.models import SEO, Category, Novel, Chapter
 from django.views.decorators.gzip import gzip_page
+import os,codecs,mimetypes
 __author__ = 'meng'
 
 #@gzip_page
@@ -64,8 +67,54 @@ def book(request,book_alias):
     #return HttpResponse('ok')
 
 def book_download(request,book_alias):
-    return HttpResponse("正在添加小说下载功能")
+    t = request.GET.get('type')
+    def readFile(f, buf_size=262144):
+        #f = open(fn, "rb")
+        while True:
+            c = f.read(buf_size)
+            if c:
+                yield c
+            else:
+                break
+        f.close()
+    def fileDownload(file_path):
+        ''''''
+        file_content_type = mimetypes.guess_type(file_path)[0]
+        file_object = default_storage.open(file_path)
+        response = HttpResponse(readFile(file_object),content_type=file_content_type)
+        response['Content-Disposition'] = 'attachment; ' + filename_header
+        response['Content-Length'] = default_storage.size(file_path)
+        return response
+    if t:
+        novel_object = get_object_or_404(Novel,alias = book_alias)
+        chapterlist = novel_object.chapter_set.all()
+        _chapter = [dict(name = chapter.name,content = chapter.content.replace(u'<p>',"").replace(u"</p>","\n")) for chapter in chapterlist]
+        if t == 'txt':
+            from dnovel.settings import NOVEL_DOWNLOAD_ROOT
+            file_name = book_alias + '.txt'
+            file_path = os.path.join(NOVEL_DOWNLOAD_ROOT,file_name)
 
+            filename_header = 'filename=%s' % file_name.encode('utf-8')
+
+            content_str = ""
+            for c in _chapter:
+                content_str += '''{name}\n{content}\n'''.format(name = c['name'],content = c['content'])
+
+            if default_storage.exists(file_path):
+                #application/octet-stream
+                #file_content_type = mimetypes.guess_type(file_path)[0]
+                #file_object = default_storage.open(file_path)
+                #response = HttpResponse(readFile(file_object),content_type=file_content_type)
+                #response['Content-Disposition'] = 'attachment; ' + filename_header
+                #response['Content-Length'] = default_storage.size(file_path)
+                response = fileDownload(file_path)
+                return response
+            else:
+                save_file = default_storage.save(file_path,ContentFile(content_str))
+                response = fileDownload(file_path)
+                return response
+    else:
+        return render_to_response("download.html",{})
 #@gzip_page
 def chapter(request,book_alias,chapter_id):
     '''

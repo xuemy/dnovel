@@ -1,0 +1,9 @@
+{% extends "layouts/default.html" %}
+
+{% block content %}
+    {% include "includes/panel.html" %}
+    {% for c in chapter %}
+        {{ c.1 }}
+    {% endfor %}
+
+{% endblock %}

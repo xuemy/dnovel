@@ -19,4 +19,5 @@ temp/.vagrant/*
 *.db
 *.sqlite3
 temp/*
-public/*
+public/log/*
+public/media/*

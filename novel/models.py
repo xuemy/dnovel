@@ -98,11 +98,11 @@ class Chapter(models.Model):
     @property
     def next_chapter(self):
         next = Chapter.objects.filter(novel=self.novel,order__gt = self.order).order_by('order')
-        return next[0].get_chapter_url if next else ""
+        return next[0].get_chapter_url if next else None
     @property
     def prev_chapter(self):
         prev = Chapter.objects.filter(novel=self.novel,order__lt = self.order).latest('order')
-        return prev.get_chapter_url if prev else ""
+        return prev.get_chapter_url if prev else None
 
 
 

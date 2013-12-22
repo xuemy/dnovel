@@ -10,7 +10,7 @@
                     <h4><a href="{{ novel.get_novel_url }}" title="{{ novel.name }}">{{ novel.name }}</a></h4>
                     <p>作者:&nbsp;{{ novel.author }}</p>
                     <p class="book-description">
-                        <a href="{{ novel.last_chapter.get_chapter_url }}" title="{{ novel.last_chapter }}">{{ novel.last_chapter }}</a><br>
+                        最新章节:<a href="{{ novel.get_last_chapter.get_chapter_url }}" title="{{ novel.get_last_chapter }}">{{ novel.get_last_chapter }}</a><br>
                     {{ novel.description|safe }}
                     </p>
                 </div>

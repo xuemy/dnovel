@@ -5,7 +5,7 @@
 <meta name="keywords" content="{{ novel.name }} {{ novel.author }} TxT下载">
 <meta name="author" content="{{ novel.author }}">
 {% load staticfiles %}
-<title>{% if slug == "index" %}{{ seo.index_seo_title }}{% elif slug == "category" %}{{ category.name }}{% elif slug == "book" %}{{ novel.seo_title }}{% elif slug == "chapter" %}{{ chapter.name }}_{{ novel.name }}
+<title>{% if slug == "index" %}{% if seo.index_seo_title %}{{ seo.index_seo_title }}{% else %}{{ novel.name }}最新章节_{{novel.name}}TXT下载{% endif %}{% elif slug == "category" %}{{ category.name }}{% elif slug == "book" %}{% if novel.seo_title %}{{ novel.seo_title }}{% else %}{{ novel.name }}最新章节_{{novel.name}}TXT下载{% endif %}{% elif slug == "chapter" %}{{ chapter.name }}_{{ novel.name }}
 {% endif %}-{{ site_name }}</title>
 <!-- Bootstrap core CSS -->
 <link href="{% static 'css/app.css' %}" rel="stylesheet">

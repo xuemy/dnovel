@@ -24,9 +24,14 @@
 
                     </script>
                 <p class="text-center no-margin">
-                    <a href="{{ chapter.prev_chapter }}">上一章</a>
+                    {% if chapter.prev_chapter %}
+                     <a href="{{ chapter.prev_chapter }}">上一章</a>{% else %} <a href="{{ novel.get_novel_url }}">上一章</a>
+                    {% endif %}
                     <a href="{{ novel.get_novel_url }}" STYLE="margin-left: 5px;margin-right: 5px">返回目录</a>
-                    <a href="{{ chapter.next_chapter }}">下一章</a>
+                    {% if chapter.next_chapter %}
+                      <a href="{{ chapter.next_chapter }}">下一章</a>{% else %} <a href="{{ novel.get_novel_url }}">下一章</a>
+                    {% endif %}
+
                 </p>
                 <p class="text-center no-margin">
                    <small >键盘控制:回车返回小说目录，左右箭头翻页</small>

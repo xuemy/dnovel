@@ -15,13 +15,14 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(os.path.dirname(__file__),'novel.sqlite3'),                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
+        #'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'novel',                      # Or path to database file if using sqlite3.
+        #'NAME': os.passwordth.join(os.path.dirname(__file__),'novel.sqlite3'), The following settings are not used with sqlite3:
+        'USER': 'novel',
+        'PASSWORD': 'xmy5650268',
         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'PORT': '5432',                      # Set to empty string for default.
     }
 }
 
@@ -33,7 +34,7 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Asia/Shanghai'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -59,6 +60,7 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'public','media').replace('\\','/')
 
+NOVEL_DOWNLOAD_ROOT = os.path.join(MEDIA_ROOT,'download')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
