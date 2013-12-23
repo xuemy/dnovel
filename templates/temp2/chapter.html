@@ -3,4 +3,6 @@
 {% block content %}
     {% include "includes/breadcrumb.html" %}
     {% include "includes/chapterinfo.html" %}
+    {% load duoshuo_tags %}
+    {% duoshuo_comments %}
 {% endblock %}

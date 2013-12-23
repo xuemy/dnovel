@@ -123,6 +123,7 @@ class SEO(models.Model):
     index_seo_description = models.CharField("首页seo描述",max_length=255,blank=True)
     site_name = models.CharField(u'网站名',max_length=50,blank=True)
     site_sub_name = models.CharField(u'网站副标题',max_length=100,blank=True)
+    site_url = models.CharField("网站地址",blank=True,max_length=50,default='/')
     tongji = models.TextField(u'统计代码',blank=True)
     google = models.CharField(u'google统计ID',max_length=20,blank=True)
 

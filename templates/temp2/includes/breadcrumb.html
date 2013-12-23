@@ -1,6 +1,6 @@
 <div class="container">
     <ul class="breadcrumb">
-        <li><a href="/">{{ site_name }}book</a></li>
+        <li><a href="/">{{ site_name }}</a></li>
         {#  category book chapter   #}{% if slug == 'category' %}
             <li><a href="{{ category.get_category_url }}">{{ category.name }}</a></li><li class="active">正文</li>
             {% elif slug == 'book' %}

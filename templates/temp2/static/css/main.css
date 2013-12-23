@@ -135,3 +135,10 @@ body{
     letter-spacing: 1px;
     margin-bottom: 30px;
 }
+@media (max-width: 480px) {
+   .chapter-info .content p{
+       font-size: 14px;
+       line-height: 26px;
+       margin: 15px;
+   }
+}

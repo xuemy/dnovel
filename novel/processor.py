@@ -22,7 +22,8 @@ def my_processor(request):
             google = seo.google,
             link_list = Links.objects.all(),
             seo = seo,
-            random_novel = random_novel
+            random_novel = random_novel,
+            site_url = seo.site_url
 
         )
     else:

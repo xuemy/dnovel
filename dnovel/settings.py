@@ -4,7 +4,9 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+DUOSHUO_SECRET = '6bf8f556ecad41e9fc922a40544a49a4'
 
+DUOSHUO_SHORT_NAME = '你的多说short name'
 
 
 ADMINS = (
@@ -156,6 +158,7 @@ INSTALLED_APPS = (
     'south',
     'adminplus',
     'debug_toolbar',
+    'duoshuo',
 )
 
 
