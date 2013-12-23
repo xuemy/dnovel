@@ -1,6 +1,5 @@
 Django==1.5.5
 lxml
-pymysql
 scrapy
 gevent
 south
@@ -10,3 +9,5 @@ gunicorn
 django-debug-toolbar
 markupsafe
 django-adminplus
+requests
+pyjwt
